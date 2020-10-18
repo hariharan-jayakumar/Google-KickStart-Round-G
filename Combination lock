@@ -1,0 +1,42 @@
+// given a number t, min moves is min(mod(t-n),n+max-t)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int getdistance(vector<int> a, int n, int max1)
+{
+int distance = 0;
+for(int i=0;i<a.size();i++)
+{
+distance += min(abs(a[i]-n),min(abs(a[i]+max1-n),abs(n+max1-a[i])));
+}
+return distance;
+}
+
+void solve()
+{
+int n,max1;
+cin>>n>>max1;
+vector<int> a(n);
+for(int i=0;i<n;i++) cin>>a[i];
+
+sort(a.begin(),a.end());
+int min1 = INT_MAX;
+
+for(int i=0;i<a.size();i++)
+{
+min1 = min(min1,getdistance(a,a[i],max1));
+}
+cout<<min1<<endl;
+}
+
+int main()
+{
+int t;
+cin>>t;
+for(int i=1;i<=t;i++)
+{
+cout<<"Case #"<<i<<": ";
+solve();
+}
+}

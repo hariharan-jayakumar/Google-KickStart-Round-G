@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve()
+{
+int n;
+cin>>n;
+vector<vector<int>> a(n, vector<int> (n,0));
+
+for(int i=0;i<n;i++)
+for(int j=0;j<n;j++)
+{cin>>a[i][j];}
+
+int max = 0;
+int currentsum = 0;
+for(int i=0;i<n;i++)
+{
+int k=i,j=0;
+currentsum = 0;
+while(k<n && j<n)
+{
+if(currentsum > max) max = currentsum;
+currentsum += a[k][j]; 
+k++;j++;
+}
+if(currentsum > max) max = currentsum;
+}
+
+for(int i=1;i<n;i++)
+{
+int k=0,j=i;
+currentsum = 0;
+while(k<n && j<n)
+{
+if(currentsum > max) max = currentsum;
+currentsum += a[k][j]; 
+k++;j++;
+}
+if(currentsum > max) max = currentsum;
+}
+
+cout<<max<<endl;
+}
+
+int main()
+{
+int t;
+cin>>t;
+for(int i=1;i<=t;i++)
+{
+cout<<"Case #"<<i<<": ";
+solve();
+}
+}
